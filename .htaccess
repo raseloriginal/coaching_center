@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  Options -Indexes
+  RewriteEngine on
+  
+  # Redirect root to public folder
+  RewriteRule ^$ public/index.php?url= [L,QSA]
+  
+  # Redirect all other requests to public folder
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ public/index.php?url=$1 [L,QSA]
+</IfModule>

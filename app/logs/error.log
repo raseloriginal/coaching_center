@@ -1,0 +1,84 @@
+[12-Apr-2026 14:35:28 Europe/Berlin] PHP Deprecated:  Creation of dynamic property FinanceController::$financeModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Finance.php on line 7
+[12-Apr-2026 14:35:40 Europe/Berlin] PHP Deprecated:  Creation of dynamic property UsersController::$userModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 4
+[12-Apr-2026 14:35:40 Europe/Berlin] PHP Deprecated:  Creation of dynamic property UsersController::$userModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 4
+[12-Apr-2026 14:37:50 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 14
+[12-Apr-2026 14:38:26 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Exams.php on line 24
+[12-Apr-2026 14:48:11 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Exams.php on line 24
+[12-Apr-2026 15:00:04 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Exams.php on line 24
+[12-Apr-2026 15:00:28 Europe/Berlin] SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`coaching_db`.`exam_marks`, CONSTRAINT `exam_marks_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\coaching-center\app\core\Database.php on line 59
+[12-Apr-2026 15:20:14 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Students.php on line 66
+[12-Apr-2026 16:39:28 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 14
+[12-Apr-2026 17:06:39 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 14
+[12-Apr-2026 17:08:55 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 14
+[12-Apr-2026 17:16:25 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Users.php on line 14
+[12-Apr-2026 17:22:56 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'coaching_db.expenses' doesn't exist in C:\xampp\htdocs\coaching-center\app\core\Database.php on line 59
+[12-Apr-2026 18:25:16 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[12-Apr-2026 18:27:08 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[12-Apr-2026 18:27:18 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[12-Apr-2026 18:27:20 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[12-Apr-2026 18:29:09 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[12-Apr-2026 18:30:08 Europe/Berlin] Class "SettingsController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[15-Apr-2026 06:38:24 Europe/Berlin] syntax error, unexpected token "public" in C:\xampp\htdocs\coaching-center\main_script\app\models\Finance.php on line 246
+[15-Apr-2026 06:39:32 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:39:32 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:39:55 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:39:55 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:41:16 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:41:16 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:42:03 Europe/Berlin] syntax error, unexpected token "public" in C:\xampp\htdocs\coaching-center\main_script\app\models\Attendance.php on line 56
+[15-Apr-2026 06:42:58 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:42:58 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:43:51 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:43:51 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:44:11 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:44:11 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 06:53:47 Europe/Berlin] PHP Warning:  Undefined variable $profit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 151
+[15-Apr-2026 06:53:47 Europe/Berlin] PHP Warning:  Undefined variable $isProfit in C:\xampp\htdocs\coaching-center\main_script\app\views\pages\index.php on line 156
+[15-Apr-2026 07:09:06 Europe/Berlin] Class "AuditLog" not found in C:\xampp\htdocs\coaching-center\main_script\app\helpers\util_helper.php on line 32
+[15-Apr-2026 07:12:57 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'coaching_db.audit_logs' doesn't exist in C:\xampp\htdocs\coaching-center\main_script\app\core\Database.php on line 59
+[17-Apr-2026 09:33:02 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$financeModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 7
+[17-Apr-2026 09:33:02 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$studentModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 8
+[17-Apr-2026 09:33:02 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$batchModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 9
+[17-Apr-2026 09:33:02 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$teacherModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 10
+[17-Apr-2026 09:33:02 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$auditModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 11
+[17-Apr-2026 09:33:03 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$financeModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 7
+[17-Apr-2026 09:33:03 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$studentModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 8
+[17-Apr-2026 09:33:03 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$batchModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 9
+[17-Apr-2026 09:33:03 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$teacherModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 10
+[17-Apr-2026 09:33:03 Europe/Berlin] PHP Deprecated:  Creation of dynamic property PagesController::$auditModel is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Pages.php on line 11
+[17-Apr-2026 10:15:36 Europe/Berlin] Class "NoticesController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[17-Apr-2026 10:15:57 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 10:15:57 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 10:15:57 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 10:15:57 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 10:15:57 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 10:29:53 Europe/Berlin] Class "LandingPageController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[17-Apr-2026 11:06:17 Europe/Berlin] Class "NoticesController" not found in C:\xampp\htdocs\coaching-center\app\core\App.php on line 30
+[17-Apr-2026 11:07:42 Europe/Berlin] PHP Warning:  Undefined array key "content_err" in C:\xampp\htdocs\coaching-center\app\views\notices\add.php on line 17
+[17-Apr-2026 11:08:28 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\coaching-center\app\controllers\Notices.php on line 24
+[17-Apr-2026 11:08:28 Europe/Berlin] Call to undefined function redirect() in C:\xampp\htdocs\coaching-center\app\controllers\Notices.php on line 40
+[17-Apr-2026 11:12:55 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 11:12:55 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 11:12:55 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 11:12:55 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:12:55 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:13:43 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 11:13:43 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 11:13:43 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 11:13:43 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:13:43 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:14:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 11:14:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 11:14:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 11:14:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:14:04 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:15:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 11:15:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 11:15:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 11:15:04 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:15:04 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 43
+[17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 44
+[17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
+[17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[17-Apr-2026 11:15:14 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
