@@ -1,9 +1,0 @@
-.env
-/vendor/
-/app/logs/*.log
-.DS_Store
-Thumbs.db
-
-git rm --cached .env
-git commit -m "Stop tracking .env file"
-git push
