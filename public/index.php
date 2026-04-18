@@ -43,14 +43,31 @@ ini_set('error_log', dirname(dirname(__FILE__)) . '/app/logs/error.log');
 
 set_exception_handler(function($e) {
     error_log($e->getMessage() . " in " . $e->getFile() . " on line " . $e->getLine());
+    
+    $isTableNotFound = str_contains($e->getMessage(), '42S02');
+    
     if (env('APP_DEBUG', '1')) {
-        echo "<div style='padding: 20px; background: #fff5f5; border: 2px solid #feb2b2; margin: 20px; font-family: sans-serif; border-radius: 8px;'>";
-        echo "<h3 style='color: #c53030; margin-top: 0;'>Application Error</h3>";
-        echo "<p><strong>Message:</strong> " . $e->getMessage() . "</p>";
-        echo "<p><strong>File:</strong> " . $e->getFile() . " (Line " . $e->getLine() . ")</p>";
+        echo "<div style='padding: 30px; background: #fff; border: 1px solid #e1e4e8; margin: 40px auto; max-width: 800px; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; border-radius: 12px; shadow: 0 4px 6px rgba(0,0,0,0.05);'>";
+        
+        if ($isTableNotFound) {
+            echo "<div style='background: #fff5f5; color: #c53030; padding: 20px; border-radius: 8px; border-left: 5px solid #fc8181; mb-20;'>";
+            echo "<h2 style='margin-top: 0; font-size: 20px;'><i class='fas fa-exclamation-triangle'></i> Database Setup Required</h2>";
+            echo "<p style='margin-bottom: 20px;'>It looks like some database tables are missing on your server. This usually happens after a new installation or update.</p>";
+            echo "<a href='" . URLROOT . "/public/db_check.php' style='display: inline-block; background: #c53030; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;'>Run Database Diagnostic</a>";
+            echo "</div>";
+            echo "<hr style='border: none; border-top: 1px solid #e1e4e8; margin: 30px 0;'>";
+        }
+
+        echo "<h3 style='color: #24292e; margin-top: 0;'>Application Error</h3>";
+        echo "<p style='color: #444;'><strong>Message:</strong> " . $e->getMessage() . "</p>";
+        echo "<p style='color: #666; font-size: 14px;'><strong>File:</strong> " . $e->getFile() . " (Line " . $e->getLine() . ")</p>";
         echo "</div>";
     } else {
-        echo "<h1>Something went wrong.</h1><p>Our team has been notified.</p>";
+        if ($isTableNotFound) {
+            echo "<h1>Database Configuration Required</h1><p>Please contact the administrator to run database migrations.</p>";
+        } else {
+            echo "<h1>Something went wrong.</h1><p>Our team has been notified.</p>";
+        }
     }
     exit();
 });

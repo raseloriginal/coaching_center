@@ -178,6 +178,24 @@ INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('smtp_user',
 INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('smtp_pass', '');
 INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('smtp_port', '2525');
 INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('smtp_encryption', 'tls');
+INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('fee_reminder_days', '3');
+INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('portal_enabled', '1');
+INSERT IGNORE INTO system_config (config_key, config_value) VALUES ('invoice_footer', 'Thank you for your payment!');
+
+-- Landing Page Default Configs
+REPLACE INTO system_config (config_key, config_value) VALUES ('hero_title', 'Build Your Career with Proper Guidance');
+REPLACE INTO system_config (config_key, config_value) VALUES ('hero_subtitle', 'We are one of the most reliable coaching centers in Bangladesh, providing top-notch education for years.');
+REPLACE INTO system_config (config_key, config_value) VALUES ('landing_banner', 'https://images.unsplash.com/photo-1523050853063-bd8012fec042?auto=format&fit=crop&w=1920&q=80');
+REPLACE INTO system_config (config_key, config_value) VALUES ('about_title', 'The Most Trusted Education Partner in the Region');
+REPLACE INTO system_config (config_key, config_value) VALUES ('about_description', 'We provide comprehensive coaching for students from class 6 to 12. Our special focus areas include Science, Mathematics, and English.');
+REPLACE INTO system_config (config_key, config_value) VALUES ('principal_name', 'Dr. Abdur Rahman');
+REPLACE INTO system_config (config_key, config_value) VALUES ('principal_quote', 'Our mission is to empower the next generation of leaders in Bangladesh through quality education.');
+REPLACE INTO system_config (config_key, config_value) VALUES ('principal_image', 'https://i.pravatar.cc/150?u=principal');
+REPLACE INTO system_config (config_key, config_value) VALUES ('years_excellence', '10+');
+REPLACE INTO system_config (config_key, config_value) VALUES ('gpa5_holders', '500+');
+REPLACE INTO system_config (config_key, config_value) VALUES ('active_students', '500');
+REPLACE INTO system_config (config_key, config_value) VALUES ('total_teachers', '40');
+REPLACE INTO system_config (config_key, config_value) VALUES ('total_courses', '15');
 
 -- Table: audit_logs (Activity Logging)
 CREATE TABLE IF NOT EXISTS audit_logs (
@@ -231,4 +249,37 @@ CREATE TABLE IF NOT EXISTS landing_testimonials (
     content TEXT NOT NULL,
     image VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Advanced Features Tables
+CREATE TABLE IF NOT EXISTS student_discounts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    discount_percent DECIMAL(5,2) DEFAULT 0.00,
+    reason VARCHAR(255),
+    active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS student_accounts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL UNIQUE,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    last_login TIMESTAMP NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS notification_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('email', 'sms', 'announcement') DEFAULT 'email',
+    recipient_type ENUM('student', 'teacher', 'batch', 'all') DEFAULT 'all',
+    recipient_id INT DEFAULT NULL,
+    subject VARCHAR(255),
+    message TEXT,
+    sent_by INT,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

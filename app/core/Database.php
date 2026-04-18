@@ -80,4 +80,49 @@ class Database {
     public function lastInsertId() {
         return self::$dbh->lastInsertId();
     }
+
+    /**
+     * Check if a table exists in the database
+     */
+    public function tableExists($table) {
+        try {
+            $this->query("SELECT 1 FROM $table LIMIT 1");
+            $this->execute();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Run a multi-query SQL script from a file
+     */
+    public function runScript($filePath) {
+        if (!file_exists($filePath)) {
+            return false;
+        }
+
+        $sql = file_get_contents($filePath);
+        if ($sql === false) return false;
+
+        try {
+            // Remove comments
+            $sql = preg_replace('/--.*$/m', '', $sql);
+            $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+            
+            // Split into individual queries
+            $queries = array_filter(array_map('trim', explode(';', $sql)));
+            
+            foreach ($queries as $query) {
+                if (!empty($query)) {
+                    $this->query($query);
+                    $this->execute();
+                }
+            }
+            return true;
+        } catch (Exception $e) {
+            error_log("SQL Script Error: " . $e->getMessage());
+            return false;
+        }
+    }
 }
