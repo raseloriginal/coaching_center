@@ -199,3 +199,36 @@ CREATE TABLE IF NOT EXISTS notices (
     is_active TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Landing Page Tables
+CREATE TABLE IF NOT EXISTS landing_mentors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    credentials VARCHAR(255),
+    image VARCHAR(255),
+    social_fb VARCHAR(255),
+    social_wa VARCHAR(255),
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS landing_programs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    image VARCHAR(255),
+    features TEXT,
+    is_trending TINYINT(1) DEFAULT 0,
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS landing_testimonials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    credentials VARCHAR(255),
+    content TEXT NOT NULL,
+    image VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
