@@ -64,3 +64,17 @@ CREATE TABLE landing_testimonials (
 -- Seed Testimonials
 INSERT INTO landing_testimonials (name, credentials, content) VALUES 
 ('Sabbir Ahmed', 'Batch 2022, Now at BUET', 'The mentors here didn''t just teach me formulas; they taught me how to think. Today, I am a student at BUET, and I owe a huge part of my success to this coaching center.');
+
+-- 5. Notices Table
+CREATE TABLE IF NOT EXISTS notices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Seed Notices
+INSERT INTO notices (content, is_active) VALUES 
+('Admissions are open for the upcoming SSC Master Class batch! Visit our desk for details.', 1),
+('New Advanced Mathematics batch starting from May 1st. Limited seats available!', 1),
+('Download our official mobile app from Google Play Store for regular updates.', 1);
