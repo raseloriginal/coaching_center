@@ -1,5 +1,5 @@
 <?php
-class LandingPagesController extends Controller {
+class LandingpagesController extends Controller {
     private $landingModel;
     private $settingModel;
 
