@@ -158,11 +158,14 @@
             });
     }
 
-    document.getElementById('selectAllPayments')?.addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.row-checkbox');
-        checkboxes.forEach(cb => cb.checked = this.checked);
-        updatePaymentBulkActions();
-    });
+    const selectAllBtn = document.getElementById('selectAllPayments');
+    if (selectAllBtn) {
+        selectAllBtn.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+            updatePaymentBulkActions();
+        });
+    }
 
     function updatePaymentBulkActions() {
         const checkboxes = document.querySelectorAll('.row-checkbox:checked');

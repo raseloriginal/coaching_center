@@ -164,11 +164,14 @@
             });
     }
 
-    document.getElementById('selectAllFees')?.addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.row-checkbox');
-        checkboxes.forEach(cb => cb.checked = this.checked);
-        updateFeeBulkActions();
-    });
+    const selectAllBtn = document.getElementById('selectAllFees');
+    if (selectAllBtn) {
+        selectAllBtn.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+            updateFeeBulkActions();
+        });
+    }
 
     function updateFeeBulkActions() {
         const checkboxes = document.querySelectorAll('.row-checkbox:checked');
