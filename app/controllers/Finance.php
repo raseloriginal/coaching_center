@@ -11,17 +11,20 @@ class FinanceController extends Controller {
 
     public function fees() {
         $status = $_GET['status'] ?? '';
-        $fees = $this->financeModel->getStudentFees(['status' => $status]);
+        $month = $_GET['month'] ?? date('Y-m');
+        $fees = $this->financeModel->getStudentFees(['status' => $status, 'month' => $month]);
         $data = [
             'fees' => $fees,
-            'current_status' => $status
+            'current_status' => $status,
+            'current_month' => $month
         ];
         $this->view('finances/fees', $data);
     }
 
     public function filter_fees() {
         $status = $_GET['status'] ?? '';
-        $fees = $this->financeModel->getStudentFees(['status' => $status]);
+        $month = $_GET['month'] ?? date('Y-m');
+        $fees = $this->financeModel->getStudentFees(['status' => $status, 'month' => $month]);
         
         $output = '';
         foreach ($fees as $fee) {
@@ -35,15 +38,16 @@ class FinanceController extends Controller {
             $dueHtml = ($fee->due_amount > 0) ? '<div class="text-xs text-rose-500">Due: $'. $fee->due_amount .'</div>' : '';
 
             $output .= '<tr class="hover:bg-gray-50">';
+            $output .= '<td class="px-6 py-4"><input type="checkbox" name="fee_ids[]" value="'. $fee->id .'" class="row-checkbox rounded border-gray-300 text-blue-600 focus:ring-blue-500" onclick="updateFeeBulkActions()"></td>';
             $output .= '<td class="px-6 py-4"><div class="text-sm font-bold text-gray-900">'. htmlspecialchars($fee->student_name) .'</div><div class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> '. $month .'</div></td>';
             $output .= '<td class="px-6 py-4"><div class="text-sm font-semibold text-gray-800">$'. $fee->amount .'</div>' . $dueHtml . '</td>';
             $output .= '<td class="px-6 py-4"><span class="px-3 py-1 rounded-full text-xs font-bold '. $statusClass .'">'. ucfirst($fee->status) .'</span></td>';
-            $output .= '<td class="px-6 py-4 text-right"><button onclick="openModal(\''. $fee->id .'\', \''. $fee->status .'\', \''. $fee->due_amount .'\', \''. htmlspecialchars($fee->student_name, ENT_QUOTES) .'\')" class="text-blue-600 hover:text-blue-900 font-bold text-sm">Update</button></td>';
+            $output .= '<td class="px-6 py-4 text-right"><button type="button" onclick="openModal(\''. $fee->id .'\', \''. $fee->status .'\', \''. $fee->due_amount .'\', \''. htmlspecialchars($fee->student_name, ENT_QUOTES) .'\')" class="text-blue-600 hover:text-blue-900 font-bold text-sm">Update</button></td>';
             $output .= '</tr>';
         }
         
         if (empty($fees)) {
-            $output = '<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No records found.</td></tr>';
+            $output = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No records found.</td></tr>';
         }
         
         echo $output;
@@ -59,23 +63,54 @@ class FinanceController extends Controller {
                 log_action('UPDATE_FEE', "Updated fee status (ID: {$id}) to {$status}");
                 flash('finance_message', 'Payment status updated');
             }
-            $this->redirect('finance/fees');
+            $month = $_POST['current_month'] ?? date('Y-m');
+            $this->redirect('finance/fees?month=' . $month);
+        }
+    }
+
+    public function bulk_update_fees() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $ids = $_POST['fee_ids'] ?? [];
+            $status = $_POST['bulk_status'] ?? '';
+            $month = $_POST['current_month'] ?? date('Y-m');
+            
+            if (!empty($ids) && in_array($status, ['paid', 'pending', 'due'])) {
+                if ($this->financeModel->bulkUpdateFeeStatus($ids, $status)) {
+                    log_action('BULK_UPDATE_FEES', "Bulk updated fee status to {$status} for " . count($ids) . " records");
+                    flash('finance_message', "Status updated successfully for selected records");
+                }
+            }
+            $this->redirect('finance/fees?month=' . $month);
+        }
+    }
+
+    public function generate_monthly_fees() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $month = $_POST['month'] ?? date('Y-m');
+            if ($this->financeModel->generateStudentMonthlyFees($month)) {
+                log_action('GENERATE_FEES', "Generated fees for {$month}");
+                flash('finance_message', "Fees for {$month} generated successfully");
+            }
+            $this->redirect('finance/fees?month=' . $month);
         }
     }
 
     public function payments() {
         $status = $_GET['status'] ?? '';
-        $payments = $this->financeModel->getTeacherPayments(['status' => $status]);
+        $month = $_GET['month'] ?? date('Y-m');
+        $payments = $this->financeModel->getTeacherPayments(['status' => $status, 'month' => $month]);
         $data = [
             'payments' => $payments,
-            'current_status' => $status
+            'current_status' => $status,
+            'current_month' => $month
         ];
         $this->view('finances/payments', $data);
     }
 
     public function filter_payments() {
         $status = $_GET['status'] ?? '';
-        $payments = $this->financeModel->getTeacherPayments(['status' => $status]);
+        $month = $_GET['month'] ?? date('Y-m');
+        $payments = $this->financeModel->getTeacherPayments(['status' => $status, 'month' => $month]);
         
         $output = '';
         foreach ($payments as $payment) {
@@ -89,15 +124,16 @@ class FinanceController extends Controller {
             $dueHtml = ($payment->due_amount > 0) ? '<div class="text-xs text-rose-500 text-right">Due: $'. $payment->due_amount .'</div>' : '';
 
             $output .= '<tr class="hover:bg-gray-50 transition-colors">';
+            $output .= '<td class="px-6 py-4"><input type="checkbox" name="payment_ids[]" value="'. $payment->id .'" class="row-checkbox rounded border-gray-300 text-blue-600 focus:ring-blue-500" onclick="updatePaymentBulkActions()"></td>';
             $output .= '<td class="px-6 py-4"><div class="text-sm font-bold text-gray-900">'. htmlspecialchars($payment->teacher_name) .'</div><div class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> '. $month .'</div></td>';
             $output .= '<td class="px-6 py-4"><div class="text-sm font-semibold text-gray-800">$'. $payment->amount .'</div>' . $dueHtml . '</td>';
             $output .= '<td class="px-6 py-4"><span class="px-3 py-1 rounded-full text-xs font-bold '. $statusClass .'">'. ucfirst($payment->status) .'</span></td>';
-            $output .= '<td class="px-6 py-4 text-right"><button onclick="openModal(\''. $payment->id .'\', \''. $payment->status .'\', \''. $payment->due_amount .'\', \''. htmlspecialchars($payment->teacher_name, ENT_QUOTES) .'\')" class="text-blue-600 hover:text-blue-900 font-bold text-sm">Update</button></td>';
+            $output .= '<td class="px-6 py-4 text-right"><button type="button" onclick="openModal(\''. $payment->id .'\', \''. $payment->status .'\', \''. $payment->due_amount .'\', \''. htmlspecialchars($payment->teacher_name, ENT_QUOTES) .'\')" class="text-blue-600 hover:text-blue-900 font-bold text-sm">Update</button></td>';
             $output .= '</tr>';
         }
         
         if (empty($payments)) {
-            $output = '<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No records found.</td></tr>';
+            $output = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No records found.</td></tr>';
         }
         
         echo $output;
@@ -113,7 +149,35 @@ class FinanceController extends Controller {
                 log_action('UPDATE_TEACHER_PAY', "Updated payment (ID: {$id}) to {$status}");
                 flash('finance_message', 'Payment status updated');
             }
-            $this->redirect('finance/payments');
+            $month = $_POST['current_month'] ?? date('Y-m');
+            $this->redirect('finance/payments?month=' . $month);
+        }
+    }
+
+    public function bulk_update_payments() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $ids = $_POST['payment_ids'] ?? [];
+            $status = $_POST['bulk_status'] ?? '';
+            $month = $_POST['current_month'] ?? date('Y-m');
+            
+            if (!empty($ids) && in_array($status, ['paid', 'pending', 'due'])) {
+                if ($this->financeModel->bulkUpdatePaymentStatus($ids, $status)) {
+                    log_action('BULK_UPDATE_PAYMENTS', "Bulk updated payment status to {$status} for " . count($ids) . " records");
+                    flash('finance_message', "Status updated successfully for selected records");
+                }
+            }
+            $this->redirect('finance/payments?month=' . $month);
+        }
+    }
+
+    public function generate_monthly_payments() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $month = $_POST['month'] ?? date('Y-m');
+            if ($this->financeModel->generateTeacherMonthlyPayments($month)) {
+                log_action('GENERATE_PAYMENTS', "Generated teacher payments for {$month}");
+                flash('finance_message', "Payments for {$month} generated successfully");
+            }
+            $this->redirect('finance/payments?month=' . $month);
         }
     }
 

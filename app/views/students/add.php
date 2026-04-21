@@ -44,10 +44,7 @@
                     <input type="date" name="joining_date" id="joining_date" class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700" value="<?php echo $data['joining_date'] ?? ''; ?>">
                 </div>
 
-                <div>
-                    <label for="date_to_pay" class="block text-sm font-semibold text-gray-700 mb-2">Date to Pay</label>
-                    <input type="date" name="date_to_pay" id="date_to_pay" class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700" value="<?php echo $data['date_to_pay'] ?? ''; ?>">
-                </div>    <div class="bg-blue-50 p-4 rounded-xl flex gap-3 items-start">
+<div class="bg-blue-50 p-4 rounded-xl flex gap-3 items-start">
                 <i class="fas fa-info-circle text-blue-500 mt-1"></i>
                 <p class="text-xs text-blue-700 leading-relaxed font-medium">
                     A unique QR code will be automatically generated upon registration. This QR code will be used for daily attendance tracking.

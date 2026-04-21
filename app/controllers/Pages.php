@@ -52,8 +52,8 @@ class PagesController extends Controller {
             $this->redirect('users/login');
         }
 
-        // Trigger monthly automation on every dashboard load
-        $this->financeModel->runMonthlyAutomation();
+        // Trigger monthly automation on every dashboard load - Removed as per user request
+        // $this->financeModel->runMonthlyAutomation();
 
         // Gather stats
         $students = $this->studentModel->getStudents();

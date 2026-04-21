@@ -44,10 +44,7 @@
                     <input type="date" name="joining_date" id="joining_date" class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700" value="<?php echo $data['joining_date'] ?? ''; ?>">
                 </div>
 
-                <div>
-                    <label for="date_to_pay" class="block text-sm font-semibold text-gray-700 mb-2">Date to Pay</label>
-                    <input type="date" name="date_to_pay" id="date_to_pay" class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700" value="<?php echo $data['date_to_pay'] ?? ''; ?>">
-                </div> 
+
                  <div>
                 <label for="status" class="block text-sm font-semibold text-gray-700 mb-2">Account Status</label>
                 <select name="status" id="status" class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">

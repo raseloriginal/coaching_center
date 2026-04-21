@@ -8,15 +8,21 @@ class Finance {
 
     // STUDENT FEES
     public function getStudentFees($filter = []) {
-        $sql = 'SELECT f.*, s.name as student_name FROM student_fees f JOIN students s ON f.student_id = s.id';
+        $sql = 'SELECT f.*, s.name as student_name FROM student_fees f JOIN students s ON f.student_id = s.id WHERE 1=1';
         if (!empty($filter['status'])) {
-            $sql .= ' WHERE f.status = :status';
+            $sql .= ' AND f.status = :status';
+        }
+        if (!empty($filter['month'])) {
+            $sql .= ' AND f.month = :month';
         }
         $sql .= ' ORDER BY f.month DESC, s.name ASC';
         
         $this->db->query($sql);
         if (!empty($filter['status'])) {
             $this->db->bind(':status', $filter['status']);
+        }
+        if (!empty($filter['month'])) {
+            $this->db->bind(':month', $filter['month']);
         }
         return $this->db->resultSet();
     }
@@ -37,17 +43,41 @@ class Finance {
         return $this->db->execute();
     }
 
+    public function bulkUpdateFeeStatus($ids, $status) {
+        if (empty($ids) || !is_array($ids)) return false;
+        $in = "";
+        $params = [];
+        foreach ($ids as $i => $id) {
+            $key = ":id_$i";
+            $in .= "$key,";
+            $params[$key] = $id;
+        }
+        $in = rtrim($in, ",");
+        $this->db->query("UPDATE student_fees SET status = :status WHERE id IN ($in)");
+        $this->db->bind(':status', $status);
+        foreach ($params as $k => $v) {
+            $this->db->bind($k, $v);
+        }
+        return $this->db->execute();
+    }
+
     // TEACHER PAYMENTS
     public function getTeacherPayments($filter = []) {
-        $sql = 'SELECT p.*, t.name as teacher_name FROM teacher_payments p JOIN teachers t ON p.teacher_id = t.id';
+        $sql = 'SELECT p.*, t.name as teacher_name FROM teacher_payments p JOIN teachers t ON p.teacher_id = t.id WHERE 1=1';
         if (!empty($filter['status'])) {
-            $sql .= ' WHERE p.status = :status';
+            $sql .= ' AND p.status = :status';
+        }
+        if (!empty($filter['month'])) {
+            $sql .= ' AND p.month = :month';
         }
         $sql .= ' ORDER BY p.month DESC, t.name ASC';
 
         $this->db->query($sql);
         if (!empty($filter['status'])) {
             $this->db->bind(':status', $filter['status']);
+        }
+        if (!empty($filter['month'])) {
+            $this->db->bind(':month', $filter['month']);
         }
         return $this->db->resultSet();
     }
@@ -60,35 +90,40 @@ class Finance {
         return $this->db->execute();
     }
 
-    // AUTOMATION: Run on first visit of month
-    public function runMonthlyAutomation() {
-        $currentMonth = date('Y-m');
-        
-        // Check last run month
-        $this->db->query('SELECT config_value FROM system_config WHERE config_key = "last_automation_month"');
-        $row = $this->db->single();
-        $lastMonth = $row ? $row->config_value : '';
-
-        if ($lastMonth !== $currentMonth) {
-            // 1. Insert fees for ALL ACTIVE students
-            $this->db->query('INSERT INTO student_fees (student_id, month, amount, status) 
-                             SELECT id, :month, 500, "pending" FROM students WHERE status = "active"');
-            $this->db->bind(':month', $currentMonth);
-            $this->db->execute();
-
-            // 2. Insert payments for ALL teachers
-            $this->db->query('INSERT INTO teacher_payments (teacher_id, month, amount, status) 
-                             SELECT id, :month, salary, "pending" FROM teachers');
-            $this->db->bind(':month', $currentMonth);
-            $this->db->execute();
-
-            // Update last run month
-            $this->db->query('UPDATE system_config SET config_value = :current_month WHERE config_key = "last_automation_month"');
-            $this->db->bind(':current_month', $currentMonth);
-            $this->db->execute();
-            return true;
+    public function bulkUpdatePaymentStatus($ids, $status) {
+        if (empty($ids) || !is_array($ids)) return false;
+        $in = "";
+        $params = [];
+        foreach ($ids as $i => $id) {
+            $key = ":id_$i";
+            $in .= "$key,";
+            $params[$key] = $id;
         }
-        return false;
+        $in = rtrim($in, ",");
+        $this->db->query("UPDATE teacher_payments SET status = :status WHERE id IN ($in)");
+        $this->db->bind(':status', $status);
+        foreach ($params as $k => $v) {
+            $this->db->bind($k, $v);
+        }
+        return $this->db->execute();
+    }
+
+    public function generateStudentMonthlyFees($month) {
+        $this->db->query('INSERT INTO student_fees (student_id, month, amount, status) 
+                         SELECT id, :month, fees_amount, "pending" FROM students WHERE status = "active" 
+                         AND id NOT IN (SELECT student_id FROM student_fees WHERE month = :check_month)');
+        $this->db->bind(':month', $month);
+        $this->db->bind(':check_month', $month);
+        return $this->db->execute();
+    }
+
+    public function generateTeacherMonthlyPayments($month) {
+        $this->db->query('INSERT INTO teacher_payments (teacher_id, month, amount, status) 
+                         SELECT id, :month, salary, "pending" FROM teachers 
+                         WHERE id NOT IN (SELECT teacher_id FROM teacher_payments WHERE month = :check_month)');
+        $this->db->bind(':month', $month);
+        $this->db->bind(':check_month', $month);
+        return $this->db->execute();
     }
 
     // EXPENSES

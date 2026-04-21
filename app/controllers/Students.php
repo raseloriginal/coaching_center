@@ -33,7 +33,6 @@ class StudentsController extends Controller {
                 'fees_amount' => trim($_POST['fees_amount'] ?? ''),
                 'father_name' => trim($_POST['father_name'] ?? ''),
                 'joining_date' => trim($_POST['joining_date'] ?? ''),
-                'date_to_pay' => trim($_POST['date_to_pay'] ?? ''),
                 'roll_number' => trim($_POST['roll_number'] ?? ''),
                 'qr_code' => 'ST-' . strtoupper(uniqid()),
                 'name_err' => '',
@@ -57,7 +56,7 @@ class StudentsController extends Controller {
         } else {
             $data = [
                 'name' => '', 'phone' => '', 
-                'fees_amount' => '', 'father_name' => '', 'joining_date' => '', 'date_to_pay' => '', 'roll_number' => '',
+                'fees_amount' => '', 'father_name' => '', 'joining_date' => '', 'roll_number' => '',
                 'name_err' => '', 'phone_err' => ''
             ];
             $this->view('students/add', $data);
@@ -74,7 +73,6 @@ class StudentsController extends Controller {
                 'fees_amount' => trim($_POST['fees_amount'] ?? ''),
                 'father_name' => trim($_POST['father_name'] ?? ''),
                 'joining_date' => trim($_POST['joining_date'] ?? ''),
-                'date_to_pay' => trim($_POST['date_to_pay'] ?? ''),
                 'roll_number' => trim($_POST['roll_number'] ?? ''),
                 'status' => $_POST['status'],
                 'name_err' => '', 'phone_err' => ''
@@ -103,7 +101,6 @@ class StudentsController extends Controller {
                 'fees_amount' => $student->fees_amount,
                 'father_name' => $student->father_name,
                 'joining_date' => $student->joining_date,
-                'date_to_pay' => $student->date_to_pay,
                 'roll_number' => $student->roll_number,
                 'status' => $student->status,
                 'name_err' => '', 'phone_err' => ''

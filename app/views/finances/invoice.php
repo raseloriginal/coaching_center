@@ -68,7 +68,7 @@
             <div class="text-right">
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Payment Info</h3>
                 <div class="text-gray-900">
-                    <p class="text-sm">Month: <span class="font-bold text-blue-600 uppercase"><?php echo date('F Y', strtotime($data['fee']->month_year . '-01')); ?></span></p>
+                    <p class="text-sm">Month: <span class="font-bold text-blue-600 uppercase"><?php echo date('F Y', strtotime($data['fee']->month . '-01')); ?></span></p>
                     <?php 
                         $statusClass = 'text-emerald-600';
                         if($data['fee']->status == 'pending') $statusClass = 'text-amber-600';
@@ -94,7 +94,7 @@
                     <tr>
                         <td class="py-6">
                             <p class="font-bold text-gray-900">Monthly Tuition Fee</p>
-                            <p class="text-xs text-gray-500 italic">For the month of <?php echo date('F Y', strtotime($data['fee']->month_year . '-01')); ?></p>
+                            <p class="text-xs text-gray-500 italic">For the month of <?php echo date('F Y', strtotime($data['fee']->month . '-01')); ?></p>
                         </td>
                         <td class="py-6 text-right text-gray-900">৳<?php echo number_format($data['fee']->amount, 2); ?></td>
                         <td class="py-6 text-right text-gray-900">1</td>

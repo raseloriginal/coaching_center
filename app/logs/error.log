@@ -82,3 +82,7 @@
 [17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 45
 [17-Apr-2026 11:15:14 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$role in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
 [17-Apr-2026 11:15:14 Europe/Berlin] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\coaching-center\app\views\users\manage.php on line 48
+[21-Apr-2026 02:28:12 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$month_year in C:\xampp\htdocs\coaching-center\app\views\finances\invoice.php on line 71
+[21-Apr-2026 02:28:12 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$month_year in C:\xampp\htdocs\coaching-center\app\views\finances\invoice.php on line 97
+[21-Apr-2026 02:28:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$month_year in C:\xampp\htdocs\coaching-center\app\views\finances\invoice.php on line 71
+[21-Apr-2026 02:28:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$month_year in C:\xampp\htdocs\coaching-center\app\views\finances\invoice.php on line 97
