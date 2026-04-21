@@ -37,7 +37,7 @@
 <form id="bulkForm" action="<?php echo URLROOT; ?>/finance/bulk_update_payments" method="POST">
     <input type="hidden" name="current_month" value="<?php echo $data['current_month']; ?>">
     
-    <div id="bulkActions" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 shadow-2xl rounded-full px-6 py-3 flex items-center gap-6 hidden z-[100] animate-fade-up border border-gray-800">
+    <div id="bulkActions" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-900 shadow-2xl rounded-full px-6 py-3 flex items-center gap-6 hidden z-[100] animate-fade-down border border-gray-800">
         <span class="text-sm font-bold text-white"><span id="selectedCount" class="bg-blue-600 text-white px-2 py-0.5 rounded-md mr-1">0</span> items selected</span>
         <div class="flex items-center gap-2">
             <select name="bulk_status" class="text-sm border-gray-700 bg-gray-800 text-white rounded-lg focus:ring-blue-500 py-2" required>
